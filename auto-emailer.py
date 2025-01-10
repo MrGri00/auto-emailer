@@ -13,6 +13,7 @@ file_path = 'docs/contacts.csv'
 name_col = 0
 recipient_col = 1
 language_col = 3
+email_subject = 'Test email'
 
 # Load environment variables
 load_dotenv()
@@ -77,7 +78,7 @@ for contact in contacts:
         continue
     locale_body = email_templates.get(contact[language_col], email_templates['CA'])
     send_email(
-        subject='Test email',
+        subject=email_subject,
         body=format_email(locale_body, contact[name_col]),
         recipient=contact[recipient_col],
         attachments=all_attachments
