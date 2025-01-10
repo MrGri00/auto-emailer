@@ -7,4 +7,5 @@ source venv/bin/activate
 ```bash
 pip3 install python-dotenv
 ```
-3. Customize `.env` variables
+3. Create an [app password](https://myaccount.google.com/apppasswords)
+4. Customize `.env` variables (use the app password you just generated, not your account password)
