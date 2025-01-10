@@ -4,16 +4,12 @@
 
 ⚠️ **Use this tool responsibly.** This script is intended for legitimate purposes such as reaching out to clients, sending newsletters, or other lawful communication. Do not use it to send unsolicited emails or spam recipients.
 
----
-
 ## Features
 - Read contact details from a CSV file.
 - Dynamically customize email templates based on recipient information.
 - Add multiple attachments.
 - Supports multilingual email templates.
 - Handles invalid email addresses gracefully.
-
----
 
 ## Setup
 
@@ -35,8 +31,8 @@ pip install python-dotenv
 ### 4. Customize Environment Variables
 Configure the .env file in the project directory with your credentials:
 ```ini
-EMAIL_ADDRESS=your_email@gmail.com
-EMAIL_PASSWORD=your_app_password
+EMAIL_ADDRESS="your_email@gmail.com"
+EMAIL_PASSWORD="your_app_password"
 ```
 
 ### 5. Prepare Your Files
@@ -55,8 +51,6 @@ EMAIL_PASSWORD=your_app_password
 python auto-emailer.py
 ```
 
----
-
 ## Folder Structure
 ```bash
 auto-emailer/
@@ -64,10 +58,9 @@ auto-emailer/
 ├── docs/             # Folder for email templates and contact CSV
 ├── auto-emailer.py   # Main script
 ├── .env              # Environment variables
+├── LICENSE           # Project license
 ├── README.md         # Documentation
 ```
-
----
 
 ## Responsibilities and Guidelines
 - **Use responsibly:** Ensure you have the consent of your recipients before sending emails.
@@ -76,7 +69,11 @@ auto-emailer/
 
 Misuse of this tool may violate laws such as the CAN-SPAM Act, GDPR, or other regulations in your jurisdiction.
 
----
-
 ## License
-This project is licensed under the [MIT License]().
+This project is licensed under the [MIT License](https://github.com/MrGri00/auto-emailer/blob/main/LICENSE).
+
+## Contributions
+Contributions are welcome! If you have suggestions for improvements, feel free to create an issue or submit a pull request.
+
+## Support
+If you encounter any issues or have questions, please open an issue on the [GitHub repository](https://github.com/MrGri00/auto-emailer/).
