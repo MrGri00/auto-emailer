@@ -23,19 +23,14 @@ EMAIL_PASSWORD = os.getenv('EMAIL_PASSWORD')
 class Language(Enum):
     CATALAN = 'CA'
     SPANISH = 'ES'
-    
+
 def read_csv(file_path):
-    data = []
     with open(file_path, mode='r', newline='') as file:
-        csv_reader = csv.reader(file)
-        for row in csv_reader:
-            data.append(row)
-    return data
+        return list(csv.reader(file))
 
 def read_txt(file_path):
     with open(file_path, 'r') as file:
-        content = file.read()
-    return content
+        return file.read()
 
 def send_email(subject, body, recipient, attachments=[]):
     msg = MIMEMultipart()
@@ -66,23 +61,21 @@ def format_email(body, name):
     return body.replace('[NAME]', name)
 
 def get_attachments(directory):
-    attachments = []
-    for filename in os.listdir(directory):
-        if not filename.startswith('.'):
-            attachments.append(os.path.join(directory, filename))
-    return attachments
+    return [os.path.join(directory, filename) for filename in os.listdir(directory) if not filename.startswith('.')]
 
 # Main
 contacts = read_csv(file_path)
-email_CA = read_txt('docs/email_CA.txt')
-email_ES = read_txt('docs/email_ES.txt')
+email_templates = {
+    'CA': read_txt('docs/email_CA.txt'),
+    'ES': read_txt('docs/email_ES.txt')
+}
 all_attachments = get_attachments('attachments')
 
 for contact in contacts:
-    try:
-        locale_body = globals()[f'email_{contact[language_col]}']
-    except KeyError:
-        locale_body = email_CA
+    if '@' not in contact[recipient_col]:
+        print(f'Invalid email address for {contact[name_col]}: {contact[recipient_col]}')
+        continue
+    locale_body = email_templates.get(contact[language_col], email_templates['CA'])
     send_email(
         subject='Test email',
         body=format_email(locale_body, contact[name_col]),
